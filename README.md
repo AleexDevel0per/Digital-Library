@@ -6,6 +6,8 @@ Este projeto é uma aplicação interativa em Ruby que permite ao usuário inser
 
 Além disso, o programa fornece links para mais informações sobre cada livro e permite que o usuário abra esses links diretamente no navegador.
 
+---
+
 ### Tecnologias Utilizadas
 - Ruby (linguagem principal)
 - Biblioteca URI (manipulação de URLs)
