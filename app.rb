@@ -1,3 +1,5 @@
+require 'uri' # Biblioteca para manipular URLs
+
 # 1) Solicitar Nome Completo e Idade
 # - O usuário deve digitar seu nome
 puts "--------------------------------------------------------------"
@@ -69,3 +71,22 @@ end
 # Perguntar se o usuário quer abrir um link
 puts "\nDigite o número de um livro para saber mais ou pressione Enter para sair: "
 escolha = gets.chomp.to_i
+
+
+if escolha.between?(1, livros.length)
+    url = livros[escolha - 1][1] # Obtém a URL do livro escolhido
+
+    # Corrige caracteres especiais na URL para evitar erros
+    url = URI::DEFAULT_PARSER.escape(url)
+
+    # Abre o link no navegador de acordo com o sistema operacional
+    if RUBY_PLATFORM =~ /darwin/ # macOS
+        system("open \"#{url}\"")
+    elsif RUBY_PLATFORM =~ /linux/
+        system("xdg-open \"#{url}\"")
+    elsif RUBY_PLATFORM =~ /win32|win64/
+        system("start \"\" \"#{url}\"") # Comando correto para Windows
+    end
+
+    puts "Abrindo link no navegador..."
+end
